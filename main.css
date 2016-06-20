@@ -1,0 +1,18 @@
+.scroll-tabs {
+  display: table;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  table-layout: fixed; }
+
+.scroll-tab {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  display: table-cell;
+  overflow: hidden;
+  padding: 10px;
+  white-space: nowrap; }
+  .scroll-tab.selected {
+    background: orange; }
+
+/*# sourceMappingURL=main.css.map */
