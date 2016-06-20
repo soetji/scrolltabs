@@ -10,6 +10,12 @@ class ScrollTabs extends React.Component {
         }
     }
 
+    init () {
+        this.moreWidth = $(this.headMoreEl).outerWidth();
+        this.handleResize();
+        $(window).on('resize', this.handleResizeThis);
+    }
+
     handleResize () {
         this.setState({width: $(this.container).width()});
     }
@@ -19,8 +25,7 @@ class ScrollTabs extends React.Component {
     }
 
     componentDidMount () {
-        this.handleResize();
-        $(window).on('resize', this.handleResizeThis);
+        this.init();
     }
 
     componentWillUnmount () {
@@ -54,7 +59,7 @@ class ScrollTabs extends React.Component {
             headIndex, tabTotalDiff;
 
         for (tabTotal = allTabs.length; tabTotal > 0; tabTotal--) {
-            tabWidth = containerWidth/tabTotal;
+            tabWidth = (containerWidth - 2 * this.moreWidth) / tabTotal;
             if (tabWidth >= minWidth) {
                 break;
             }
@@ -106,13 +111,9 @@ class ScrollTabs extends React.Component {
             tabs = this.divideTabs(this.props.tabs, this.state.width,
                 this.props.tabMinWidth, this.state.selectedIndex);
 
-            main = (
-                <div className='scroll-tabs' style={{width: this.state.width}}>
-                    {this.renderTabs(tabs.main, tabs.tabWidth, this.state.selectedIndex)}
-                </div>
-            );
+            console.log(tabs);
 
-            if (tabs.headMore) {
+            if (tabs.headMore.length) {
                 headMore = (
                     <div className='scroll-tabs-head-more'>
                         {this.renderMore(tabs.headMore, 0)}
@@ -120,18 +121,30 @@ class ScrollTabs extends React.Component {
                 );
             }
 
-            if (tabs.tailMore) {
+            if (tabs.tailMore.length) {
                 tailMore = (
                     <div className='scroll-tabs-tail-more'>
                         {this.renderMore(tabs.tailMore, this.headIndex + tabs.main.length)}
                     </div>
                 );
             }
+
+            main = this.renderTabs(tabs.main, tabs.tabWidth, this.state.selectedIndex);
         }
 
         return (
             <div ref={el => this.container = el}>
-                {main}
+                <div className='scroll-tabs' style={{width: this.state.width}}>
+                    <div ref={el => this.headMoreEl = el}
+                        className={classNames('scroll-tabs-more head', {
+                            more: tabs && tabs.headMore.length
+                        })}
+                    />
+                    {main}
+                    <div className={classNames('scroll-tabs-more tail', {
+                        more: tabs && tabs.tailMore.length
+                    })} />
+                </div>
                 {headMore}
                 {tailMore}
             </div>

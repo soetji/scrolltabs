@@ -4,7 +4,7 @@
   box-sizing: border-box;
   table-layout: fixed; }
 
-.scroll-tab {
+.scroll-tabs-more, .scroll-tab {
   border: 1px solid #ccc;
   border-collapse: collapse;
   box-sizing: border-box;
@@ -12,7 +12,13 @@
   overflow: hidden;
   padding: 10px;
   white-space: nowrap; }
-  .scroll-tab.selected {
-    background: orange; }
+
+.scroll-tabs-more {
+  width: 33px; }
+  .scroll-tabs-more.more::before {
+    content: '...'; }
+
+.scroll-tab.selected {
+  background: orange; }
 
 /*# sourceMappingURL=main.css.map */
