@@ -29,10 +29,20 @@
     margin-right: -1px; }
 
 .scroll-tab {
-  padding: 10px;
+  padding: 10px 0 10px 10px;
   position: relative; }
+  .scroll-tab::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: linear-gradient(to left, white, transparent 15px); }
   .scroll-tab.selected {
     background: orange; }
+    .scroll-tab.selected::before {
+      background: linear-gradient(to left, orange, transparent 15px); }
   .scroll-tab.more {
     display: block; }
   .scroll-tab .label {
