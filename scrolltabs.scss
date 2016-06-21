@@ -17,16 +17,25 @@
 .scroll-tabs-more-link {
     @extend %tab;
     position: relative;
-    width: 33px;
+    width: 28px;
 
-    &.more > .label {
-        // To make text vertically aligned with tab text
-        display: inline-block;
-        overflow: hidden;
+    &.show {
+        & > .label {
+            // To make text vertically aligned with tab text
+            display: inline-block;
+            overflow: hidden;
 
-        &::before {
-            content: '...';
-            padding: 10px;
+            &::before {
+                padding: 10px;
+            }
+        }
+
+        &.head  > .label::before {
+            content: '<';
+        }
+
+        &.tail  > .label::before {
+            content: '>';
         }
     }
 }

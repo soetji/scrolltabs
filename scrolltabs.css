@@ -14,13 +14,16 @@
 
 .scroll-tabs-more-link {
   position: relative;
-  width: 33px; }
-  .scroll-tabs-more-link.more > .label {
+  width: 28px; }
+  .scroll-tabs-more-link.show > .label {
     display: inline-block;
     overflow: hidden; }
-    .scroll-tabs-more-link.more > .label::before {
-      content: '...';
+    .scroll-tabs-more-link.show > .label::before {
       padding: 10px; }
+  .scroll-tabs-more-link.show.head > .label::before {
+    content: '<'; }
+  .scroll-tabs-more-link.show.tail > .label::before {
+    content: '>'; }
 
 .scroll-tabs-more {
   position: absolute;

@@ -82,8 +82,7 @@ class ScrollTabs extends React.Component {
     }
 
     divideTabs (allTabs, containerWidth, minWidth, selectedIndex) {
-        let headMore, tailMore, tabTotal, tabWidth,
-            headIndex, tabTotalDiff;
+        let tabTotal, tabWidth, headIndex;
 
         for (tabTotal = allTabs.length; tabTotal > 0; tabTotal--) {
             tabWidth = (containerWidth - 2 * this.moreWidth) / tabTotal;
@@ -108,7 +107,6 @@ class ScrollTabs extends React.Component {
 
         // container resized
         } else {
-            tabTotalDiff = tabTotal - this.tabTotal;
             if (tabTotal > 0) {
                 headIndex = this.headIndex - tabTotal;
             }
@@ -162,7 +160,7 @@ class ScrollTabs extends React.Component {
                 <div className='scroll-tabs' style={{width: this.state.width}}>
                     <div ref={el => this.headMoreEl = el}
                         className={classNames('scroll-tabs-more-link head', {
-                            more: tabs && tabs.headMore.length
+                            show: tabs && tabs.headMore.length
                         })}
                         onMouseEnter={this.handleMoreMouseEnter.bind(this)}
                         onMouseLeave={this.handleMoreMouseLeave.bind(this)}
@@ -173,7 +171,7 @@ class ScrollTabs extends React.Component {
                     </div>
                     {main}
                     <div className={classNames('scroll-tabs-more-link tail', {
-                            more: tabs && tabs.tailMore.length
+                            show: tabs && tabs.tailMore.length
                         })}
                         onMouseEnter={this.handleMoreMouseEnter.bind(this)}
                         onMouseLeave={this.handleMoreMouseLeave.bind(this)}
