@@ -14,6 +14,7 @@ class ScrollTabs extends React.Component {
 
     init () {
         this.moreWidth = $(this.headMoreEl).outerWidth();
+
         this.handleResize();
         $(window).on('resize', this.handleResizeThis);
     }
@@ -23,7 +24,7 @@ class ScrollTabs extends React.Component {
     }
 
     handleTabClick (ev) {
-        const idx = Number(ev.target.dataset.tabIndex);
+        const idx = Number($(ev.target).closest('.scroll-tab').data('tabIndex'));
 
         this.setState({
             selectedIndex: idx,
@@ -64,17 +65,17 @@ class ScrollTabs extends React.Component {
                 data-tab-index={i + this.headIndex}
                 style={{columnWidth: tabWidth}}
                 onClick={this.handleTabClick.bind(this)}
-            >{tab}</div>
+            >{this.props.renderTabContent ? this.props.renderTabContent(tab) : tab}</div>
         );
     }
 
     renderMore (tabs, indexOffset) {
         return tabs.map((tab, i) =>
             <div key={i}
-                className='scroll-tab-more'
+                className='scroll-tab more'
                 data-tab-index={i + indexOffset}
                 onClick={this.handleTabClick.bind(this)}
-            >{tab}</div>
+            >{this.props.renderTabContent ? this.props.renderTabContent(tab) : tab}</div>
         );
     }
 

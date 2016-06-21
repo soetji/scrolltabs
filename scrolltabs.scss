@@ -39,15 +39,6 @@
     }
 }
 
-.scroll-tab-more {
-    border: 1px solid #ccc;
-    border-collapse: collapse;
-    box-sizing: border-box;
-    overflow: hidden;
-    padding: 10px;
-    white-space: nowrap;
-}
-
 .scroll-tab {
     @extend %tab;
     overflow: hidden;
@@ -55,5 +46,9 @@
 
     &.selected {
         background: orange;
+    }
+
+    &.more {
+        display: block;
     }
 }
