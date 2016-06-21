@@ -26,13 +26,16 @@
 
 .scroll-tabs-more {
     position: absolute;
+    margin-top: 10px;
 
     &.head {
         left: 0;
+        margin-left: -1px;
     }
 
     &.tail {
         right: 0;
+        margin-right: -1px;
     }
 }
 

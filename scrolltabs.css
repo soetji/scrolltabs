@@ -19,11 +19,14 @@
     padding: 10px; }
 
 .scroll-tabs-more {
-  position: absolute; }
+  position: absolute;
+  margin-top: 10px; }
   .scroll-tabs-more.head {
-    left: 0; }
+    left: 0;
+    margin-left: -1px; }
   .scroll-tabs-more.tail {
-    right: 0; }
+    right: 0;
+    margin-right: -1px; }
 
 .scroll-tab-more {
   border: 1px solid #ccc;

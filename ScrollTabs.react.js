@@ -6,6 +6,8 @@ class ScrollTabs extends React.Component {
 
         this.state = {
             selectedIndex: this.props.selectedIndex,
+            showHeadMore: false,
+            showTailMore: false,
             width: undefined
         }
     }
@@ -21,7 +23,23 @@ class ScrollTabs extends React.Component {
     }
 
     handleTabClick (ev) {
-        this.setState({selectedIndex: Number(ev.target.dataset.tabIndex)});
+        this.setState({
+            selectedIndex: Number(ev.target.dataset.tabIndex),
+            showHeadMore: false,
+            showTailMore: false,
+        });
+    }
+
+    handleMoreMouseEnter (ev) {
+        let state = {};
+        state[$(ev.target).closest('.scroll-tabs-more-link').data('showState')] = true;
+        this.setState(state);
+    }
+
+    handleMoreMouseLeave (ev) {
+        let state = {};
+        state[$(ev.target).closest('.scroll-tabs-more-link').data('showState')] = false;
+        this.setState(state);
     }
 
     componentDidMount () {
@@ -112,9 +130,7 @@ class ScrollTabs extends React.Component {
             tabs = this.divideTabs(this.props.tabs, this.state.width,
                 this.props.tabMinWidth, this.state.selectedIndex);
 
-            console.log(tabs);
-
-            if (tabs.headMore.length) {
+            if (this.state.showHeadMore && tabs.headMore.length) {
                 headMore = (
                     <div className='scroll-tabs-more head'>
                         {this.renderMore(tabs.headMore, 0)}
@@ -122,7 +138,7 @@ class ScrollTabs extends React.Component {
                 );
             }
 
-            if (tabs.tailMore.length) {
+            if (this.state.showTailMore && tabs.tailMore.length) {
                 tailMore = (
                     <div className='scroll-tabs-more tail'>
                         {this.renderMore(tabs.tailMore, this.headIndex + tabs.main.length)}
@@ -140,11 +156,17 @@ class ScrollTabs extends React.Component {
                         className={classNames('scroll-tabs-more-link head', {
                             more: tabs && tabs.headMore.length
                         })}
+                        onMouseEnter={this.handleMoreMouseEnter.bind(this)}
+                        onMouseLeave={this.handleMoreMouseLeave.bind(this)}
+                        data-show-state='showHeadMore'
                     >{headMore}</div>
                     {main}
                     <div className={classNames('scroll-tabs-more-link tail', {
-                        more: tabs && tabs.tailMore.length
-                    })}
+                            more: tabs && tabs.tailMore.length
+                        })}
+                        onMouseEnter={this.handleMoreMouseEnter.bind(this)}
+                        onMouseLeave={this.handleMoreMouseLeave.bind(this)}
+                        data-show-state='showTailMore'
                     >{tailMore}</div>
                 </div>
             </div>
