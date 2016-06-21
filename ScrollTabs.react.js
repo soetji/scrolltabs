@@ -23,11 +23,16 @@ class ScrollTabs extends React.Component {
     }
 
     handleTabClick (ev) {
+        const idx = Number(ev.target.dataset.tabIndex);
+
         this.setState({
-            selectedIndex: Number(ev.target.dataset.tabIndex),
+            selectedIndex: idx,
             showHeadMore: false,
             showTailMore: false,
         });
+        if (this.props.handleTabClick) {
+            this.props.handleTabClick(this.props.tabs[idx]);
+        }
     }
 
     handleMoreMouseEnter (ev) {
