@@ -48,6 +48,7 @@ class ScrollTabs extends React.Component {
     renderMore (tabs, indexOffset) {
         return tabs.map((tab, i) =>
             <div key={i}
+                className='scroll-tab-more'
                 data-tab-index={i + indexOffset}
                 onClick={this.handleTabClick.bind(this)}
             >{tab}</div>
@@ -115,7 +116,7 @@ class ScrollTabs extends React.Component {
 
             if (tabs.headMore.length) {
                 headMore = (
-                    <div className='scroll-tabs-head-more'>
+                    <div className='scroll-tabs-more head'>
                         {this.renderMore(tabs.headMore, 0)}
                     </div>
                 );
@@ -123,7 +124,7 @@ class ScrollTabs extends React.Component {
 
             if (tabs.tailMore.length) {
                 tailMore = (
-                    <div className='scroll-tabs-tail-more'>
+                    <div className='scroll-tabs-more tail'>
                         {this.renderMore(tabs.tailMore, this.headIndex + tabs.main.length)}
                     </div>
                 );
@@ -136,17 +137,16 @@ class ScrollTabs extends React.Component {
             <div ref={el => this.container = el}>
                 <div className='scroll-tabs' style={{width: this.state.width}}>
                     <div ref={el => this.headMoreEl = el}
-                        className={classNames('scroll-tabs-more head', {
+                        className={classNames('scroll-tabs-more-link head', {
                             more: tabs && tabs.headMore.length
                         })}
-                    />
+                    >{headMore}</div>
                     {main}
-                    <div className={classNames('scroll-tabs-more tail', {
+                    <div className={classNames('scroll-tabs-more-link tail', {
                         more: tabs && tabs.tailMore.length
-                    })} />
+                    })}
+                    >{tailMore}</div>
                 </div>
-                {headMore}
-                {tailMore}
             </div>
         );
     }

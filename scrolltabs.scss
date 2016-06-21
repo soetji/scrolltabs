@@ -10,22 +10,45 @@
     border-collapse: collapse;
     box-sizing: border-box;
     display: table-cell;
+    white-space: nowrap;
+}
+
+.scroll-tabs-more-link {
+    @extend %tab;
+    position: relative;
+    width: 33px;
+
+    &.more::before {
+        content: '...';
+        padding: 10px;
+    }
+}
+
+.scroll-tabs-more {
+    position: absolute;
+
+    &.head {
+        left: 0;
+    }
+
+    &.tail {
+        right: 0;
+    }
+}
+
+.scroll-tab-more {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    box-sizing: border-box;
     overflow: hidden;
     padding: 10px;
     white-space: nowrap;
 }
 
-.scroll-tabs-more {
-    @extend %tab;
-    width: 33px;
-
-    &.more::before {
-        content: '...';
-    }
-}
-
 .scroll-tab {
     @extend %tab;
+    overflow: hidden;
+    padding: 10px;
 
     &.selected {
         background: orange;

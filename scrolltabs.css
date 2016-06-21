@@ -1,0 +1,42 @@
+.scroll-tabs {
+  display: table;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  table-layout: fixed; }
+
+.scroll-tabs-more-link, .scroll-tab {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  display: table-cell;
+  white-space: nowrap; }
+
+.scroll-tabs-more-link {
+  position: relative;
+  width: 33px; }
+  .scroll-tabs-more-link.more::before {
+    content: '...';
+    padding: 10px; }
+
+.scroll-tabs-more {
+  position: absolute; }
+  .scroll-tabs-more.head {
+    left: 0; }
+  .scroll-tabs-more.tail {
+    right: 0; }
+
+.scroll-tab-more {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 10px;
+  white-space: nowrap; }
+
+.scroll-tab {
+  overflow: hidden;
+  padding: 10px; }
+  .scroll-tab.selected {
+    background: orange; }
+
+/*# sourceMappingURL=scrolltabs.css.map */
