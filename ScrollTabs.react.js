@@ -5,7 +5,7 @@ class ScrollTabs extends React.Component {
         this.handleResizeThis = this.handleResize.bind(this);
 
         this.state = {
-            selectedIndex: this.props.selectedIndex,
+            selectedIndex: this.props.selectedIndex ? this.props.selectedIndex : 0,
             showHeadMore: false,
             showTailMore: false,
             width: undefined
