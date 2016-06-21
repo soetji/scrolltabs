@@ -76,7 +76,7 @@ class ScrollTabs extends React.Component {
                 className='scroll-tab more'
                 data-tab-index={i + indexOffset}
                 onClick={this.handleTabClick.bind(this)}
-            >{this.props.renderTabContent ? this.props.renderTabContent(tab) :
+            >{this.props.renderMoreTabContent ? this.props.renderMoreTabContent(tab) :
                 <span className='label'>tab</span>}</div>
         );
     }

@@ -2,6 +2,7 @@
   display: table;
   border-collapse: collapse;
   box-sizing: border-box;
+  font: 14px arial;
   table-layout: fixed; }
 
 .scroll-tabs-more-link, .scroll-tab {
@@ -44,10 +45,22 @@
     .scroll-tab.selected::before {
       background: linear-gradient(to left, orange, orange 2px, transparent 15px); }
   .scroll-tab.more {
-    display: block;
-    padding-right: 10px; }
+    display: table-row-group; }
     .scroll-tab.more::before {
       content: none; }
+    .scroll-tab.more .tab {
+      display: table-row;
+      vertical-align: middle; }
+    .scroll-tab.more .label {
+      display: table-cell;
+      padding: 10px; }
+    .scroll-tab.more .countContainer {
+      display: table-cell;
+      padding: 10px;
+      text-align: right; }
+    .scroll-tab.more .count {
+      display: inline-block;
+      position: static; }
   .scroll-tab .label {
     display: inline-block;
     overflow: hidden;
@@ -55,7 +68,7 @@
   .scroll-tab .count {
     border-radius: 7px;
     color: white;
-    font-size: 10px;
+    font-size: 11px;
     position: absolute;
     right: 5px;
     top: -7px;

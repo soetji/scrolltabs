@@ -10,11 +10,16 @@ function renderTabContent (tab) {
     return <span><span className='label'>{tab.label}</span><span className='count'>{tab.count}</span></span>;
 }
 
+function renderMoreTabContent (tab) {
+    return <span className='tab'><span className='label'>{tab.label}</span><span className='countContainer'><span className='count'>{tab.count}</span></span></span>;
+}
+
 ReactDOM.render(
     <ScrollTabs tabs={tabs}
         tabMinWidth={100}
         selectedIndex={8}
         renderTabContent={renderTabContent}
+        renderMoreTabContent={renderMoreTabContent}
         handleTabClick={handleTabClick}
     />,
     document.getElementById('main')

@@ -2,6 +2,7 @@
     display: table;
     border-collapse: collapse;
     box-sizing: border-box;
+    font: 14px arial;
     table-layout: fixed;
 }
 
@@ -63,11 +64,31 @@
     }
 
     &.more {
-        display: block;
-        padding-right: 10px;
+        display: table-row-group;
 
         &::before {
             content: none;
+        }
+
+        .tab {
+            display: table-row;
+            vertical-align: middle;
+        }
+
+        .label {
+            display: table-cell;
+            padding: 10px;
+        }
+
+        .countContainer {
+            display: table-cell;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .count {
+            display: inline-block;
+            position: static;
         }
     }
 
@@ -80,7 +101,7 @@
     .count {
         border-radius: 7px;
         color: white;
-        font-size: 10px;
+        font-size: 11px;
         position: absolute;
         right: 5px;
         top: -7px;
