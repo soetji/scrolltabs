@@ -167,7 +167,10 @@ class ScrollTabs extends React.Component {
                         onMouseEnter={this.handleMoreMouseEnter.bind(this)}
                         onMouseLeave={this.handleMoreMouseLeave.bind(this)}
                         data-show-state='showHeadMore'
-                    >{headMore}</div>
+                    >
+                        <span className='label' />
+                        {headMore}
+                    </div>
                     {main}
                     <div className={classNames('scroll-tabs-more-link tail', {
                             more: tabs && tabs.tailMore.length
@@ -175,7 +178,10 @@ class ScrollTabs extends React.Component {
                         onMouseEnter={this.handleMoreMouseEnter.bind(this)}
                         onMouseLeave={this.handleMoreMouseLeave.bind(this)}
                         data-show-state='showTailMore'
-                    >{tailMore}</div>
+                    >
+                        <span className='label' />
+                        {tailMore}
+                    </div>
                 </div>
             </div>
         );

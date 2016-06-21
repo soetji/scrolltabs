@@ -11,7 +11,7 @@ function renderTabContent (tab) {
 }
 
 function renderMoreTabContent (tab) {
-    return <span className='tab'><span className='label'>{tab.label}</span><span className='countContainer'><span className='count'>{tab.count}</span></span></span>;
+    return <span className='tab'><span className='label'>{tab.label}</span><span className='count-container'><span className='count'>{tab.count}</span></span></span>;
 }
 
 ReactDOM.render(

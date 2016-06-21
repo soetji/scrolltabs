@@ -15,9 +15,12 @@
 .scroll-tabs-more-link {
   position: relative;
   width: 33px; }
-  .scroll-tabs-more-link.more::before {
-    content: '...';
-    padding: 10px; }
+  .scroll-tabs-more-link.more > .label {
+    display: inline-block;
+    overflow: hidden; }
+    .scroll-tabs-more-link.more > .label::before {
+      content: '...';
+      padding: 10px; }
 
 .scroll-tabs-more {
   position: absolute;
@@ -32,6 +35,21 @@
 .scroll-tab {
   padding: 10px 0 10px 10px;
   position: relative; }
+  .scroll-tab .label {
+    display: inline-block;
+    overflow: hidden;
+    width: 100%; }
+  .scroll-tab .count {
+    border-radius: 7px;
+    color: white;
+    font-size: 11px;
+    position: absolute;
+    right: 5px;
+    top: -7px;
+    background: #999;
+    padding: 0 7px;
+    height: 14px;
+    text-align: center; }
   .scroll-tab::before {
     content: '';
     width: 100%;
@@ -54,27 +72,12 @@
     .scroll-tab.more .label {
       display: table-cell;
       padding: 10px; }
-    .scroll-tab.more .countContainer {
+    .scroll-tab.more .count-container {
       display: table-cell;
       padding: 10px;
       text-align: right; }
     .scroll-tab.more .count {
       display: inline-block;
       position: static; }
-  .scroll-tab .label {
-    display: inline-block;
-    overflow: hidden;
-    width: 100%; }
-  .scroll-tab .count {
-    border-radius: 7px;
-    color: white;
-    font-size: 11px;
-    position: absolute;
-    right: 5px;
-    top: -7px;
-    background: #999;
-    padding: 0 7px;
-    height: 14px;
-    text-align: center; }
 
 /*# sourceMappingURL=scrolltabs.css.map */
