@@ -51,19 +51,24 @@
         position:absolute;
         left:0;
         top:0;
-        background:linear-gradient(to left, white, transparent 15px);
+        background:linear-gradient(to left, white, white 2px, transparent 15px);
     }
 
     &.selected {
         background: orange;
 
         &::before {
-            background:linear-gradient(to left, orange, transparent 15px);
+            background:linear-gradient(to left, orange, orange 2px, transparent 15px);
         }
     }
 
     &.more {
         display: block;
+        padding-right: 10px;
+
+        &::before {
+            content: none;
+        }
     }
 
     .label {
