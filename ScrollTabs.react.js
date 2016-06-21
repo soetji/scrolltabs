@@ -65,7 +65,8 @@ class ScrollTabs extends React.Component {
                 data-tab-index={i + this.headIndex}
                 style={{columnWidth: tabWidth}}
                 onClick={this.handleTabClick.bind(this)}
-            >{this.props.renderTabContent ? this.props.renderTabContent(tab) : tab}</div>
+            >{this.props.renderTabContent ? this.props.renderTabContent(tab) :
+                <span className='label'>tab</span>}</div>
         );
     }
 
@@ -75,7 +76,8 @@ class ScrollTabs extends React.Component {
                 className='scroll-tab more'
                 data-tab-index={i + indexOffset}
                 onClick={this.handleTabClick.bind(this)}
-            >{this.props.renderTabContent ? this.props.renderTabContent(tab) : tab}</div>
+            >{this.props.renderTabContent ? this.props.renderTabContent(tab) :
+                <span className='label'>tab</span>}</div>
         );
     }
 
