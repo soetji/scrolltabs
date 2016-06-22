@@ -48,6 +48,13 @@ class ScrollTabs extends React.Component {
         this.setState(state);
     }
 
+    componentWillReceiveProps (nextProps) {
+        if (nextProps.selectedIndex !== undefined &&
+            this.state.selectedIndex !== nextProps.selectedIndex) {
+            this.setState({selectedIndex: nextProps.selectedIndex});
+        }
+    }
+
     componentDidMount () {
         this.init();
     }
