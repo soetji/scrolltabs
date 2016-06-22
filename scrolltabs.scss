@@ -1,48 +1,84 @@
-.scroll-tabs {
-    display: table;
-    border-collapse: collapse;
-    box-sizing: border-box;
-    font: 14px arial;
-    table-layout: fixed;
-}
+$white: #fff;
+$gray-lighter: #eee;
+$gray-light: #ccc;
+$gray: #bbb;
+$gray-dark: #aaa;
+$tab-padding: 10px;
+$border-color: $gray-light;
+$background-color: $gray-lighter;
+$count-background-color: $gray-dark;
 
 %tab {
-    border: 1px solid #ccc;
+    background: $background-color;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    border-left: 1px solid $border-color;
     border-collapse: collapse;
     box-sizing: border-box;
-    display: table-cell;
+    cursor: pointer;
+    display: inline-block;
+    padding: $tab-padding 0 $tab-padding $tab-padding;
+    white-space: nowrap;
+}
+
+%count {
+    border-radius: 7px;
+    color: $white;
+    display: inline-block;
+    font-size: 11px;
+    background: $count-background-color;
+    padding: 0 7px;
+    height: 14px;
+    text-align: center;
+}
+
+.scroll-tabs {
+    font: 13px arial;
     white-space: nowrap;
 }
 
 .scroll-tabs-more-link {
     @extend %tab;
+    padding-right: $tab-padding;
     position: relative;
     width: 28px;
 
-    &.show {
-        & > .label {
-            // To make text vertically aligned with tab text
-            display: inline-block;
-            overflow: hidden;
+    &.tail {
+        border-right: 1px solid $border-color;
+    }
 
-            &::before {
-                padding: 10px;
+    & > .label {
+        // To make text vertically aligned with tab text
+        display: inline-block;
+        overflow: hidden;
+
+        &::before {
+            content: '\00a0';
+        }
+    }
+
+    &.show {
+        cursor: pointer;
+
+        &.head {
+            & > .label::before {
+                content: '<';
             }
         }
 
-        &.head  > .label::before {
-            content: '<';
-        }
-
-        &.tail  > .label::before {
-            content: '>';
+        &.tail  {
+            & > .label::before {
+                content: '>';
+            }
         }
     }
 }
 
 .scroll-tabs-more {
+    display: table;
     position: absolute;
     margin-top: 10px;
+    z-index: 100;
 
     &.head {
         left: 0;
@@ -55,9 +91,13 @@
     }
 }
 
+.scroll-tabs-tabs {
+    box-sizing: border-box;
+    display: inline-block;
+}
+
 .scroll-tab {
     @extend %tab;
-    padding: 10px 0 10px 10px;
     position: relative;
 
     .label {
@@ -67,16 +107,10 @@
     }
 
     .count {
-        border-radius: 7px;
-        color: white;
-        font-size: 11px;
+        @extend %count;
         position: absolute;
         right: 5px;
         top: -7px;
-        background: #999;
-        padding: 0 7px;
-        height: 14px;
-        text-align: center;
     }
 
     &::before {
@@ -86,43 +120,47 @@
         position:absolute;
         left:0;
         top:0;
-        background:linear-gradient(to left, white, white 2px, transparent 15px);
+        background:linear-gradient(to left, $background-color, $background-color 2px, transparent 15px);
     }
 
     &.selected {
-        background: orange;
+        border-bottom-color: $white;
+        background: $white;
+        cursor: default;
 
         &::before {
-            background:linear-gradient(to left, orange, orange 2px, transparent 15px);
+            background:linear-gradient(to left, $white, $white 2px, transparent 15px);
         }
     }
+}
 
-    &.more {
-        display: table-row-group;
+.scroll-tab-more {
+    border-right: 1px solid $border-color;
+    display: table-row-group;
 
-        &::before {
-            content: none;
-        }
+    &::before {
+        content: none;
+    }
 
-        .tab {
-            display: table-row;
-            vertical-align: middle;
-        }
+    .tab {
+        @extend %tab;
+        display: table-row;
+        vertical-align: middle;
+    }
 
-        .label {
-            display: table-cell;
-            padding: 10px;
-        }
+    .label {
+        display: table-cell;
+        padding: $tab-padding;
+    }
 
-        .count-container {
-            display: table-cell;
-            padding: 10px;
-            text-align: right;
-        }
+    .count-container {
+        display: table-cell;
+        padding: $tab-padding;
+        text-align: right;
+    }
 
-        .count {
-            display: inline-block;
-            position: static;
-        }
+    .count {
+        @extend %count;
+        position: static;
     }
 }

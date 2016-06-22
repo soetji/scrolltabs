@@ -1,33 +1,52 @@
-.scroll-tabs {
-  display: table;
+.scroll-tabs-more-link, .scroll-tab, .scroll-tab-more .tab {
+  background: #eee;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
   border-collapse: collapse;
   box-sizing: border-box;
-  font: 14px arial;
-  table-layout: fixed; }
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 0 10px 10px;
+  white-space: nowrap; }
 
-.scroll-tabs-more-link, .scroll-tab {
-  border: 1px solid #ccc;
-  border-collapse: collapse;
-  box-sizing: border-box;
-  display: table-cell;
+.scroll-tab .count, .scroll-tab-more .count {
+  border-radius: 7px;
+  color: #fff;
+  display: inline-block;
+  font-size: 11px;
+  background: #aaa;
+  padding: 0 7px;
+  height: 14px;
+  text-align: center; }
+
+.scroll-tabs {
+  font: 13px arial;
   white-space: nowrap; }
 
 .scroll-tabs-more-link {
+  padding-right: 10px;
   position: relative;
   width: 28px; }
-  .scroll-tabs-more-link.show > .label {
+  .scroll-tabs-more-link.tail {
+    border-right: 1px solid #ccc; }
+  .scroll-tabs-more-link > .label {
     display: inline-block;
     overflow: hidden; }
-    .scroll-tabs-more-link.show > .label::before {
-      padding: 10px; }
-  .scroll-tabs-more-link.show.head > .label::before {
-    content: '<'; }
-  .scroll-tabs-more-link.show.tail > .label::before {
-    content: '>'; }
+    .scroll-tabs-more-link > .label::before {
+      content: '\00a0'; }
+  .scroll-tabs-more-link.show {
+    cursor: pointer; }
+    .scroll-tabs-more-link.show.head > .label::before {
+      content: '<'; }
+    .scroll-tabs-more-link.show.tail > .label::before {
+      content: '>'; }
 
 .scroll-tabs-more {
+  display: table;
   position: absolute;
-  margin-top: 10px; }
+  margin-top: 10px;
+  z-index: 100; }
   .scroll-tabs-more.head {
     left: 0;
     margin-left: -1px; }
@@ -35,24 +54,20 @@
     right: 0;
     margin-right: -1px; }
 
+.scroll-tabs-tabs {
+  box-sizing: border-box;
+  display: inline-block; }
+
 .scroll-tab {
-  padding: 10px 0 10px 10px;
   position: relative; }
   .scroll-tab .label {
     display: inline-block;
     overflow: hidden;
     width: 100%; }
   .scroll-tab .count {
-    border-radius: 7px;
-    color: white;
-    font-size: 11px;
     position: absolute;
     right: 5px;
-    top: -7px;
-    background: #999;
-    padding: 0 7px;
-    height: 14px;
-    text-align: center; }
+    top: -7px; }
   .scroll-tab::before {
     content: '';
     width: 100%;
@@ -60,27 +75,30 @@
     position: absolute;
     left: 0;
     top: 0;
-    background: linear-gradient(to left, white, white 2px, transparent 15px); }
+    background: linear-gradient(to left, #eee, #eee 2px, transparent 15px); }
   .scroll-tab.selected {
-    background: orange; }
+    border-bottom-color: #fff;
+    background: #fff;
+    cursor: default; }
     .scroll-tab.selected::before {
-      background: linear-gradient(to left, orange, orange 2px, transparent 15px); }
-  .scroll-tab.more {
-    display: table-row-group; }
-    .scroll-tab.more::before {
-      content: none; }
-    .scroll-tab.more .tab {
-      display: table-row;
-      vertical-align: middle; }
-    .scroll-tab.more .label {
-      display: table-cell;
-      padding: 10px; }
-    .scroll-tab.more .count-container {
-      display: table-cell;
-      padding: 10px;
-      text-align: right; }
-    .scroll-tab.more .count {
-      display: inline-block;
-      position: static; }
+      background: linear-gradient(to left, #fff, #fff 2px, transparent 15px); }
+
+.scroll-tab-more {
+  border-right: 1px solid #ccc;
+  display: table-row-group; }
+  .scroll-tab-more::before {
+    content: none; }
+  .scroll-tab-more .tab {
+    display: table-row;
+    vertical-align: middle; }
+  .scroll-tab-more .label {
+    display: table-cell;
+    padding: 10px; }
+  .scroll-tab-more .count-container {
+    display: table-cell;
+    padding: 10px;
+    text-align: right; }
+  .scroll-tab-more .count {
+    position: static; }
 
 /*# sourceMappingURL=scrolltabs.css.map */

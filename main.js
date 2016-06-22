@@ -17,7 +17,7 @@ function renderMoreTabContent (tab) {
 ReactDOM.render(
     <ScrollTabs tabs={tabs}
         tabMinWidth={100}
-        selectedIndex={8}
+        selectedIndex={5}
         renderTabContent={renderTabContent}
         renderMoreTabContent={renderMoreTabContent}
         handleTabClick={handleTabClick}

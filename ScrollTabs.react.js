@@ -13,7 +13,9 @@ class ScrollTabs extends React.Component {
     }
 
     init () {
-        this.moreWidth = $(this.headMoreEl).outerWidth();
+        this.headMoreWidth = $(this.headMoreEl).outerWidth();
+        this.tailMoreWidth = $(this.tailMoreEl).outerWidth();
+        console.log(this.headMoreWidth, this.tailMoreWidth);
 
         this.handleResize();
         $(window).on('resize', this.handleResizeThis);
@@ -24,7 +26,7 @@ class ScrollTabs extends React.Component {
     }
 
     handleTabClick (ev) {
-        const idx = Number($(ev.target).closest('.scroll-tab').data('tabIndex'));
+        const idx = Number($(ev.target).closest('.tab-index').data('tabIndex'));
 
         this.setState({
             selectedIndex: idx,
@@ -59,11 +61,11 @@ class ScrollTabs extends React.Component {
     renderTabs (tabs, tabWidth, selectedIndex) {
         return tabs.map((tab, i) =>
             <div key={i}
-                className={classNames('scroll-tab', {
+                className={classNames('scroll-tab tab-index', {
                     selected: i + this.headIndex === selectedIndex
                 })}
                 data-tab-index={i + this.headIndex}
-                style={{columnWidth: tabWidth}}
+                style={{width: tabWidth}}
                 onClick={this.handleTabClick.bind(this)}
             >{this.props.renderTabContent ? this.props.renderTabContent(tab) :
                 <span className='label'>tab</span>}</div>
@@ -73,7 +75,7 @@ class ScrollTabs extends React.Component {
     renderMore (tabs, indexOffset) {
         return tabs.map((tab, i) =>
             <div key={i}
-                className='scroll-tab more'
+                className='scroll-tab-more tab-index'
                 data-tab-index={i + indexOffset}
                 onClick={this.handleTabClick.bind(this)}
             >{this.props.renderMoreTabContent ? this.props.renderMoreTabContent(tab) :
@@ -85,7 +87,7 @@ class ScrollTabs extends React.Component {
         let tabTotal, tabWidth, headIndex;
 
         for (tabTotal = allTabs.length; tabTotal > 0; tabTotal--) {
-            tabWidth = (containerWidth - 2 * this.moreWidth) / tabTotal;
+            tabWidth = (containerWidth - this.headMoreWidth - this.tailMoreWidth) / tabTotal;
             if (tabWidth >= minWidth) {
                 break;
             }
@@ -156,30 +158,33 @@ class ScrollTabs extends React.Component {
         }
 
         return (
-            <div ref={el => this.container = el}>
-                <div className='scroll-tabs' style={{width: this.state.width}}>
-                    <div ref={el => this.headMoreEl = el}
-                        className={classNames('scroll-tabs-more-link head', {
-                            show: tabs && tabs.headMore.length
-                        })}
-                        onMouseEnter={this.handleMoreMouseEnter.bind(this)}
-                        onMouseLeave={this.handleMoreMouseLeave.bind(this)}
-                        data-show-state='showHeadMore'
-                    >
-                        <span className='label' />
-                        {headMore}
-                    </div>
+            <div className='scroll-tabs'
+                ref={el => this.container = el}
+            >
+                <div ref={el => this.headMoreEl = el}
+                    className={classNames('scroll-tabs-more-link head', {
+                        show: tabs && tabs.headMore.length
+                    })}
+                    onMouseEnter={this.handleMoreMouseEnter.bind(this)}
+                    onMouseLeave={this.handleMoreMouseLeave.bind(this)}
+                    data-show-state='showHeadMore'
+                >
+                    <span className='label' />
+                    {headMore}
+                </div>
+                <div className='scroll-tabs-tabs'>
                     {main}
-                    <div className={classNames('scroll-tabs-more-link tail', {
-                            show: tabs && tabs.tailMore.length
-                        })}
-                        onMouseEnter={this.handleMoreMouseEnter.bind(this)}
-                        onMouseLeave={this.handleMoreMouseLeave.bind(this)}
-                        data-show-state='showTailMore'
-                    >
-                        <span className='label' />
-                        {tailMore}
-                    </div>
+                </div>
+                <div ref={el => this.tailMoreEl = el}
+                    className={classNames('scroll-tabs-more-link tail', {
+                        show: tabs && tabs.tailMore.length
+                    })}
+                    onMouseEnter={this.handleMoreMouseEnter.bind(this)}
+                    onMouseLeave={this.handleMoreMouseLeave.bind(this)}
+                    data-show-state='showTailMore'
+                >
+                    <span className='label' />
+                    {tailMore}
                 </div>
             </div>
         );
