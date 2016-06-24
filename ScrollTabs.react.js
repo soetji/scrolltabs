@@ -2,8 +2,6 @@ class ScrollTabs extends React.Component {
     constructor (props) {
         super(props);
 
-        this.handleResizeThis = this.handleResize.bind(this);
-
         this.state = {
             selectedIndex: this.props.selectedIndex ? this.props.selectedIndex : 0,
             showHeadMore: false,
@@ -14,13 +12,18 @@ class ScrollTabs extends React.Component {
 
     init () {
         this.moreWidth = $(this.headMoreEl).outerWidth();
+        this.handleResizeThis = this.handleResize.bind(this);
 
         this.handleResize();
         $(window).on('resize', this.handleResizeThis);
     }
 
     handleResize () {
-        this.setState({width: $(this.container).width()});
+        const width = $(this.container).width();
+
+        if (width !== this.state.width) {
+            this.setState({width: $(this.container).width()});
+        }
     }
 
     handleTabClick (ev) {
@@ -53,6 +56,8 @@ class ScrollTabs extends React.Component {
             this.state.selectedIndex !== nextProps.selectedIndex) {
             this.setState({selectedIndex: nextProps.selectedIndex});
         }
+
+        this.handleResize();
     }
 
     componentDidMount () {
